@@ -49,12 +49,8 @@ function spot(song){
   console.log("Artist Name: " + data.tracks.items[0].artists[0].name + "\n")
   console.log("Spotify URL: " + data.tracks.items[0].artists[0].external_urls.spotify + "\n")
   console.log("Album Name: " + data.tracks.items[0].album.name + "\n")
-
   });
-  
 }
-
-  // console.log("\n\n\n");
 
 
 function movie(name) {
@@ -95,5 +91,5 @@ if(method === "my-tweets") {
   } else if(method === "spotify-this-song") {
   spot(query);
   } else if(method === "movie-this") {
-    movie(query);
+  movie(query);
   }
