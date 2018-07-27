@@ -1,5 +1,7 @@
 
 var method = process.argv[2]
+var query = process.argv[3]
+
 console.log(method);
 
 
@@ -18,7 +20,11 @@ function twt(){
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
       if (!error) {
         tweets.forEach(element => {
-          console.log("#" + element.text + "\n");
+          // console.log(element);
+          console.log("*" + element.text + "\n");
+          console.log("Date Added: " + element.user.created_at);
+          console.log("In reply to: " + element.in_reply_to_screen_name);
+          
           
         });
       }
@@ -69,11 +75,25 @@ function movie(name) {
 })
 };
 
+  
+function sayAll() {
+  var http = require('http');
+  var fs = require('fs');
+  var file = fs.readFileSync('random.txt', "utf8");
+  var arr = file.split(/ (.+)/)
+  method = arr[0]
+  query = arr[1] 
+};
+
+
+if (method === "do-what-it-says") {
+  sayAll();
+}
 
 if(method === "my-tweets") {
   twt();
   } else if(method === "spotify-this-song") {
-  spot(process.argv[3]);
+  spot(query);
   } else if(method === "movie-this") {
-    movie(process.argv[3]);
+    movie(query);
   }
